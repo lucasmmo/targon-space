@@ -1,6 +1,6 @@
 FROM golang:1.16 as builder
 WORKDIR /build
-COPY .  . 
+COPY . . 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -o app cmd/main.go
 
 
