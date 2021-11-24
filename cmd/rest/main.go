@@ -10,6 +10,7 @@ import (
 	"github.com/lucasmmo/targon-space/pkg/database/mysql"
 	"github.com/lucasmmo/targon-space/pkg/get"
 	"github.com/lucasmmo/targon-space/pkg/http/rest"
+	"github.com/lucasmmo/targon-space/pkg/list"
 )
 
 var (
@@ -21,7 +22,7 @@ func main() {
 	Init()
 
 	repo := mysql.NewRepository(mysql.GetEngine(host, dbName))
-	rest.NewPostRoutes(server, get.NewUsecase(repo), create.NewUsecase(repo))
+	rest.NewPostRoutes(server, get.NewUsecase(repo), create.NewUsecase(repo), list.NewUsecase(repo))
 
 	server.Run(":" + port)
 }

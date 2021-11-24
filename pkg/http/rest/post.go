@@ -11,10 +11,11 @@ type postRoutes struct {
 	r      *gin.Engine
 	read   post.Read
 	create post.Create
+	list   post.List
 }
 
-func NewPostRoutes(r *gin.Engine, read post.Read, create post.Create) *postRoutes {
-	p := &postRoutes{r, read, create}
+func NewPostRoutes(r *gin.Engine, read post.Read, create post.Create, list post.List) *postRoutes {
+	p := &postRoutes{r, read, create, list}
 	p.SetupPostRoutes(p.r)
 	return p
 }
@@ -22,6 +23,7 @@ func NewPostRoutes(r *gin.Engine, read post.Read, create post.Create) *postRoute
 func (s *postRoutes) SetupPostRoutes(r *gin.Engine) {
 	postRoutes := r.Group("/post")
 	postRoutes.GET("/:id", s.getPost)
+	postRoutes.GET("/", s.getPosts)
 	postRoutes.POST("/", s.createPost)
 }
 
@@ -52,4 +54,15 @@ func (s *postRoutes) createPost(c *gin.Context) {
 	}
 
 	c.Status(http.StatusCreated)
+}
+
+func (s *postRoutes) getPosts(c *gin.Context) {
+
+	posts, err := s.list.Execute()
+	if err != nil {
+		c.String(http.StatusBadRequest, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, posts)
 }

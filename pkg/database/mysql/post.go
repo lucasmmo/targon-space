@@ -28,3 +28,11 @@ func (s *repository) FindById(id string) (post.Model, error) {
 	}
 	return p, nil
 }
+
+func (s *repository) FindAll() []post.Model {
+	var posts []post.Model
+	if err := s.db.Find(&posts).Error; err != nil {
+		return []post.Model{}
+	}
+	return posts
+}
