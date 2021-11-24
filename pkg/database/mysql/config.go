@@ -16,7 +16,7 @@ func config(host, dbName string) {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	conn.AutoMigrate(&post.Model{})
+	conn.AutoMigrate(&post.Post{})
 	db = conn
 }
 

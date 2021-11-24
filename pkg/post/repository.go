@@ -1,7 +1,7 @@
 package post
 
 type Repository interface {
-	Save(post *Model) error
-	FindById(id string) (Model, error)
-	FindAll() []Model
+	Save(post *Post) error
+	FindById(id string) (Post, error)
+	FindAll() []Post
 }

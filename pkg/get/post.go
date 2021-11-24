@@ -14,14 +14,14 @@ func NewUsecase(repository post.Repository) post.Read {
 	return &usecase{repository}
 }
 
-func (s *usecase) Execute(id string) (post.Model, error) {
+func (s *usecase) Execute(id string) (post.Post, error) {
 	if id == "" {
-		return post.Model{}, errors.New("invalid data")
+		return post.Post{}, errors.New("invalid data")
 	}
 
 	p, err := s.repository.FindById(id)
 	if err != nil {
-		return post.Model{}, err
+		return post.Post{}, err
 	}
 
 	return p, nil

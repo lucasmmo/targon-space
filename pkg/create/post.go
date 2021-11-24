@@ -20,7 +20,7 @@ func (s *usecase) Execute(title, content string) error {
 		return errors.New("empty data to create post")
 	}
 
-	newPost := post.NewModel(title, content, time.Now(), time.Now())
+	newPost := post.NewPost(title, content, time.Now(), time.Now())
 	if err := s.repository.Save(newPost); err != nil {
 		return err
 	}

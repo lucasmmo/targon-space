@@ -4,13 +4,13 @@ import (
 	"github.com/lucasmmo/targon-space/pkg/post"
 )
 
-var db map[string]*post.Model
+var db map[string]*post.Post
 
 func config() {
-	db = map[string]*post.Model{}
+	db = map[string]*post.Post{}
 }
 
-func GetEngine() map[string]*post.Model {
+func GetEngine() map[string]*post.Post {
 	if db == nil {
 		config()
 		return db

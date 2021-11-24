@@ -14,9 +14,9 @@ func NewUsecase(repository post.Repository) post.List {
 	return &usecase{repository}
 }
 
-func (s *usecase) Execute() ([]post.Model, error) {
+func (s *usecase) Execute() ([]post.Post, error) {
 	if len(s.repository.FindAll()) == 0 {
-		return []post.Model{}, errors.New("no post created yet")
+		return []post.Post{}, errors.New("no post created yet")
 	}
 	return s.repository.FindAll(), nil
 }

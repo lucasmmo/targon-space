@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-type Model struct {
+type Post struct {
 	ID        int       `json:"id,omitempty" gorm:"primaryKey"`
 	Title     string    `json:"title"`
 	Content   string    `json:"content"`
@@ -12,8 +12,8 @@ type Model struct {
 	UpdatedAT time.Time `json:"updated_at,omitempty"`
 }
 
-func NewModel(title, content string, createdAt, updatedAt time.Time) *Model {
-	return &Model{
+func NewPost(title, content string, createdAt, updatedAt time.Time) *Post {
+	return &Post{
 		Title:     title,
 		Content:   content,
 		CreatedAt: createdAt,

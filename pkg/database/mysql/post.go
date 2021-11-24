@@ -13,26 +13,26 @@ func NewRepository(db *gorm.DB) post.Repository {
 	return &repository{db}
 }
 
-func (s *repository) Save(post *post.Model) error {
+func (s *repository) Save(post *post.Post) error {
 	if err := s.db.Create(post).Error; err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *repository) FindById(id string) (post.Model, error) {
-	p := post.Model{}
+func (s *repository) FindById(id string) (post.Post, error) {
+	p := post.Post{}
 
 	if err := s.db.Where("id = ?", id).First(&p).Error; err != nil {
-		return post.Model{}, err
+		return post.Post{}, err
 	}
 	return p, nil
 }
 
-func (s *repository) FindAll() []post.Model {
-	var posts []post.Model
+func (s *repository) FindAll() []post.Post {
+	var posts []post.Post
 	if err := s.db.Find(&posts).Error; err != nil {
-		return []post.Model{}
+		return []post.Post{}
 	}
 	return posts
 }

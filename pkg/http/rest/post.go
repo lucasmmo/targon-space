@@ -40,7 +40,7 @@ func (s *postRoutes) getPost(c *gin.Context) {
 }
 
 func (s *postRoutes) createPost(c *gin.Context) {
-	post := post.Model{}
+	post := post.Post{}
 
 	err := c.BindJSON(&post)
 	if err != nil {

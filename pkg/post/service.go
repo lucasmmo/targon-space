@@ -5,9 +5,9 @@ type Create interface {
 }
 
 type Read interface {
-	Execute(id string) (Model, error)
+	Execute(id string) (Post, error)
 }
 
 type List interface {
-	Execute() ([]Model, error)
+	Execute() ([]Post, error)
 }
