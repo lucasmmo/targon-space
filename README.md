@@ -1,3 +1,3 @@
 # targon-space
 
-# post-service
+# mono-repo
