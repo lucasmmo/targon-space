@@ -1,5 +1,8 @@
 version: '3.9'
 
+networks:
+  app-tier:
+    driver: bridge
 
 volumes:
   storage:
@@ -13,6 +16,8 @@ services:
       - storage:/var/lib/mysql
     env_file:
       - .env
+    networks:
+      - app-tier
 
   api:
     build: .
@@ -22,4 +27,6 @@ services:
       - .env
     depends_on:
       - db
+    networks:
+      - app-tier
   
