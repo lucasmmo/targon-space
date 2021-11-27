@@ -7,10 +7,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/lucasmmo/targon-space/pkg/create"
-	"github.com/lucasmmo/targon-space/pkg/database/mysql"
+	"github.com/lucasmmo/targon-space/pkg/database/memory"
 	"github.com/lucasmmo/targon-space/pkg/get"
 	"github.com/lucasmmo/targon-space/pkg/http/rest"
 	"github.com/lucasmmo/targon-space/pkg/list"
+	"github.com/lucasmmo/targon-space/pkg/post"
 )
 
 var (
@@ -21,7 +22,7 @@ var (
 func main() {
 	Init()
 
-	repo := mysql.NewRepository(mysql.GetEngine(host, dbName))
+	repo := memory.NewRepository(make(map[string]*post.Post))
 	rest.NewPostRoutes(server, get.NewUsecase(repo), create.NewUsecase(repo), list.NewUsecase(repo))
 
 	server.Run(":" + port)
